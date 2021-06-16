@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>4_函数组件使用props</title>
+</head>
+<body>
+<!--准备好一个容器-->
+<div id="test1"></div>
+<div id="test2"></div>
+<div id="test3"></div>
+<!--引入react核心库-->
+<script type="text/javascript" src="../js/react.development.js"></script>
+<!--引入react-dom，用于支持react操作DOM-->
+<script type="text/javascript" src="../js/react-dom.development.js"></script>
+<!--引入babel，用于将jsx转为js-->
+<script type="text/javascript" src="../js/babel.min.js"></script>
+
+<script type="text/javascript" src="../js/prop-types.js"></script>
+
+<script type="text/babel">
+    // 创建组件
+    // class Person extends React.Component{
+    //     // 对标签属性进行类型/必要性的限制
+    //     static propTypes ={
+    //         name:PropTypes.string.isRequired,
+    //         sex:PropTypes.string,
+    //         age:PropTypes.number,
+    //         speak:PropTypes.func
+    //     }
+    //     // 指定标签默认属性值
+    //     static defaultProps = {
+    //         sex:'男',
+    //         age:18
+    //     }
+    //     render() {
+    //         console.log(this)
+    //         const {name,age,sex} = this.props
+    //         // this.props.name = 'jack' //此行代码会报错
+    //         // props是只读的
+    //         return (
+    //             <ul>
+    //                 <li>姓名：{name}</li>
+    //                 <li>性别：{sex}</li>
+    //                 <li>年龄：{age+1}</li>
+    //             </ul>
+    //         );
+    //      }
+    //     }
+    function Person(props){
+        const {name,sex,age} = props
+        return(
+                    <ul>
+                        <li>姓名：{name}</li>
+                        <li>性别：{sex}</li>
+                        <li>年龄：{age}</li>
+                    </ul>)
+    }
+        Person.propTypes ={
+            name:PropTypes.string.isRequired,
+            sex:PropTypes.string,
+            age:PropTypes.number,
+            speak:PropTypes.func
+        }
+        // 指定标签默认属性值
+    Person.defaultProps = {
+            sex:'男',
+            age:18
+        }
+    // 2.渲染组件到页面
+    ReactDOM.render(<Person name="jerry" />,document.getElementById('test1'))
+
+</script>
+</body>
+</html>

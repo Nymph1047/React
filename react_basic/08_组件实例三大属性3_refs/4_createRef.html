@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>4_createRef</title>
+</head>
+<body>
+<!--准备好一个容器-->
+<div id="test"></div>
+
+<!--引入react核心库-->
+<script type="text/javascript" src="../js/react.development.js"></script>
+<!--引入react-dom，用于支持react操作DOM-->
+<script type="text/javascript" src="../js/react-dom.development.js"></script>
+<!--引入babel，用于将jsx转为js-->
+<script type="text/javascript" src="../js/babel.min.js"></script>
+
+<script type="text/babel">
+    // 创建组件
+    class Demo extends React.Component{
+        myRef = React.createRef()
+        myRef2 = React.createRef()
+        showData = () =>{
+           alert(this.myRef.current.value)
+        }
+        showData2 = () =>{
+            alert(this.myRef2.current.value)
+        }
+        render(){
+            return(
+                <div>
+                    <input ref={this.myRef} type="text" placeholder="请输入数据"/>&nbsp;
+                    <button onClick={this.showData}  >点击显示右侧数据</button>&nbsp;
+                    <input onBlur={this.showData2} ref={this.myRef2}  type="text" placeholder="失去焦点显示数据"/>
+                </div>
+
+            )
+        }
+    }
+    // 2.渲染组件到页面
+    ReactDOM.render(<Demo/>,document.getElementById('test'))
+
+</script>
+</body>
+</html>
